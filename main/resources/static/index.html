@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+</head>
+<body>
+<form id="form">
+  <input type="text" name="email" placeholder="Wyślij emaila do:">
+  <input type="text" name="mesage" placeholder="Treść:">
+  <button id="btn">Wyślij</button>
+  <div id="answer"></div>
+</form>
+<script>
+const div = document.getElementById('answer');
+ const form = document.getElementById('form');
+ document.getElementById('btn').addEventListener('click', (event) => {
+event.preventDefault();
+const formObj = {
+ email: form.elements.email.value,
+ masage: form.elements.email.value
+ };
+fetch(':8100/email?' + new URLSearchParams(formObj))
+ .then(response => response.text())
+ .then((text) => {
+ div.innerHTML = `<h1>${text}</h1>`;
+ });
+ });
+</script>
+</body>
+</html>
